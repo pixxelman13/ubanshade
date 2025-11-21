@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Game Zone</title>
+
+<style>
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0a0a0f;
+        color: white;
+    }
+
+    header {
+        background: #1a1aff;
+        padding: 20px 40px;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .container {
+        padding: 40px;
+        text-align: center;
+    }
+
+    canvas {
+        background: #111;
+        border: 3px solid #1a1aff;
+        margin-top: 20px;
+    }
+
+    .button {
+        padding: 12px 25px;
+        background: #1a1aff;
+        border-radius: 6px;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+        margin-top: 15px;
+        display: inline-block;
+    }
+    .button:hover {
+        background: #0000cc;
+    }
+</style>
+</head>
+
+<body>
+
+<header>🎮 Game Zone</header>
+
+<div class="container">
+    <h2>Dodge the Falling Blocks</h2>
+    <p>Use <strong>← Left</strong> and <strong>→ Right</strong> arrow keys to move.  
+       Survive as long as you can!</p>
+
+    <canvas id="game" width="400" height="500"></canvas>
+
+    <div>
+        <a class="button" onclick="restartGame()">Restart</a>
+    </div>
+</div>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+let player, blocks, gameOver, score, speed;
+
+function startGame() {
+    player = { x: 180, y: 450, w: 40, h: 40 };
+    blocks = [];
+    gameOver = false;
+    score = 0;
+    speed = 2;
+    loop();
+}
+
+document.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") player.x -= 20;
+    if (e.key === "ArrowRight") player.x += 20;
+
+    player.x = Math.max(0, Math.min(360, player.x));
+});
+
+function spawnBlock() {
+    blocks.push({
+        x: Math.random() * 360,
+        y: -20,
+        w: 40,
+        h: 40
+    });
+}
+
+function loop() {
+    if (gameOver) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // player
+    ctx.fillStyle = "#00ffea";
+    ctx.fillRect(player.x, player.y, player.w, player.h);
+
+    // blocks
+    ctx.fillStyle = "#ff4444";
+    if (Math.random() < 0.04) spawnBlock();
+
+    for (let b of blocks) {
+        b.y += speed;
+        ctx.fillRect(b.x, b.y, b.w, b.h);
+
+        // collision detection
+        if (
+            b.x < player.x + player.w &&
+            b.x + b.w > player.x &&
+            b.y < player.y + player.h &&
+            b.y + b.h > player.y
+        ) {
+            gameOver = true;
+        }
+    }
+
+    blocks = blocks.filter(b => b.y < 600);
+
+    // score + difficulty
+    score++;
+    speed += 0.0008;
+
+    ctx.fillStyle = "white";
+    ctx.font = "20px Arial";
+    ctx.fillText("Score: " + score, 10, 25);
+
+    requestAnimationFrame(loop);
+}
+
+function restartGame() {
+    startGame();
+}
+
+startGame();
+</script>
+
+</body>
+</html>
