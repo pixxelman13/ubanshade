@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Urbanshade Internal Network</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Check clearance
+    if (sessionStorage.getItem("authorized") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+<body>
+
+<header>
+  <h1>URBANshade</h1>
+  <p class="subtitle">Hadal Division • Internal Staff Network</p>
+</header>
+
+<nav>
+  <a href="pages/entities.html">Entities</a>
+  <a href="pages/lore.html">Lore & History</a>
+  <a href="pages/facilities.html">Facilities</a>
+  <a href="pages/staff.html">Personnel</a>
+</nav>
+
+<main>
+  <section class="alert">
+    ⚠ ACCESS RESTRICTED — Unauthorized disclosure punishable under Corporate Secrecy Act.
+  </section>
+
+  <section>
+    <h2>Welcome, Staff Member</h2>
+    <p>
+      This database contains classified information regarding anomalous entities,
+      facilities, and incidents under Urbanshade jurisdiction.
+    </p>
+    <p class="redacted">[Some information has been redacted.]</p>
+  </section>
+
+  <p id="monitor"></p>
+
+  <script>
+    const text = "THIS ACCESS HAS BEEN MONITORED.";
+    let index = 0;
+
+    function typeMonitor() {
+      if (index < text.length) {
+        document.getElementById("monitor").innerHTML += text[index];
+        index++;
+        setTimeout(typeMonitor, 80);
+      }
+    }
+    typeMonitor();
+  </script>
+</main>
+
+<footer>
+  © Urbanshade Corporation — Hadal Division
+</footer>
+
+</body>
+</html>

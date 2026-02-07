@@ -1,0 +1,159 @@
+body {
+  background-color: #0b0f14;
+  color: #d6d6d6;
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #111821;
+  padding: 20px;
+  border-bottom: 2px solid #1f2a38;
+}
+
+h1 {
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 0.9em;
+  color: #9aa4b2;
+}
+
+nav {
+  background: #0f141c;
+  padding: 10px;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: #7fb3ff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 30px;
+}
+
+.alert {
+  background: #2a1111;
+  border-left: 5px solid #ff4c4c;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.redacted {
+  background: #000;
+  color: #000;
+  display: inline-block;
+  padding: 2px 6px;
+}
+
+footer {
+  background: #0f141c;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.8em;
+  color: #777;
+}
+
+/* LOGIN PAGE */
+.login-body {
+  background: radial-gradient(#0b0f14, #05070a);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  background: #0f141c;
+  border: 1px solid #1f2a38;
+  padding: 40px;
+  width: 350px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.8);
+  text-align: center;
+}
+
+.login-container label {
+  display: block;
+  text-align: left;
+  margin-top: 15px;
+  font-size: 0.9em;
+  color: #9aa4b2;
+}
+
+.login-container input,
+.login-container select {
+  width: 100%;
+  padding: 8px;
+  background: #0b0f14;
+  border: 1px solid #1f2a38;
+  color: #d6d6d6;
+}
+
+.login-container button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  background: #7fb3ff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login-container button:hover {
+  background: #5f9eff;
+}
+
+.error {
+  color: #ff4c4c;
+  margin-top: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+.login-warning {
+  margin-top: 20px;
+  font-size: 0.75em;
+  color: #777;
+}
+
+.glitch-text {
+  color: #ff2b2b;
+  text-shadow: 0 0 5px red;
+}
+
+/* Glitch animation */
+.glitch {
+  animation: glitch 0.2s infinite;
+}
+
+@keyframes glitch {
+  0% { filter: hue-rotate(0deg); }
+  20% { filter: hue-rotate(90deg); }
+  40% { filter: contrast(200%); }
+  60% { filter: invert(1); }
+  80% { filter: blur(1px); }
+}
+
+/* TERMINAL */
+.boot-body {
+  background: black;
+  color: #00ff9c;
+  font-family: monospace;
+  padding: 30px;
+}
+
+.terminal {
+  font-size: 1em;
+  white-space: pre-line;
+}

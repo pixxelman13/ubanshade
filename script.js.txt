@@ -1,0 +1,36 @@
+function login(event) {
+  event.preventDefault();
+
+  const clearance = document.getElementById("clearance").value;
+  const password = document.getElementById("password").value;
+  const error = document.getElementById("error");
+
+  const validClearance = ["Level 3", "Level 4", "Level 5"];
+
+  if (validClearance.includes(clearance)) {
+    sessionStorage.setItem("authorized", "true");
+    sessionStorage.setItem("clearance", clearance);
+    window.location.href = "boot.html";
+  } else {
+    logIncident(clearance);
+    triggerGlitch();
+    error.classList.remove("hidden");
+  }
+}
+
+function logIncident(clearance) {
+  let incidents = JSON.parse(localStorage.getItem("incidents")) || [];
+  incidents.push({
+    time: new Date().toISOString(),
+    clearance: clearance,
+    note: "Unauthorized access attempt"
+  });
+  localStorage.setItem("incidents", JSON.stringify(incidents));
+}
+
+function triggerGlitch() {
+  document.body.classList.add("glitch");
+  setTimeout(() => {
+    document.body.classList.remove("glitch");
+  }, 800);
+}

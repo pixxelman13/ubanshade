@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Urbanshade Network</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="boot-body">
+
+<div class="terminal" id="terminal"></div>
+
+<script>
+const lines = [
+  "Initializing URBANshade Secure Node...",
+  "Verifying clearance credentials...",
+  "Loading Hadal Division modules...",
+  "Decrypting classified directories...",
+  "WARNING: All actions are monitored.",
+  "Access granted."
+];
+
+let i = 0;
+const terminal = document.getElementById("terminal");
+
+function typeLine() {
+  if (i < lines.length) {
+    terminal.innerHTML += lines[i] + "<br>";
+    i++;
+    setTimeout(typeLine, 700);
+  } else {
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 1000);
+  }
+}
+
+typeLine();
+</script>
+
+</body>
+</html>
